@@ -36,12 +36,9 @@ public class Frag3 extends Fragment implements RssReader.RssCallback {
         wv2 = v.findViewById(R.id.wv2);
         btnLoadRSS = v.findViewById(R.id.btnLoadRSS);
 
-        btnLoadRSS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String[] url = new String[]{"https://www.singstat.gov.sg/rss"};
-                rssReader.loadFeeds(url);
-            }
+        btnLoadRSS.setOnClickListener(v -> {
+            String[] url = new String[]{"https://www.singstat.gov.sg/rss"};
+            rssReader.loadFeeds(url);
         });
         return v;
     }

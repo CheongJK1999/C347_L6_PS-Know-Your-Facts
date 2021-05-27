@@ -4,6 +4,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,13 +46,20 @@ public class Frag1 extends Fragment {
                     random.nextInt(256));
             fragView1.setBackgroundColor(frag1Color);
 
-
+            // Todo: Step 1 : obtain the Default Shared Preference
             SharedPreferences frag1SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+            // Todo: Step 2 : Create a SharedPreferences prefEdit by calling edit()
             SharedPreferences.Editor frag1SharedPreferencesEditor = frag1SharedPreferences.edit();
+
+            // Todo: Step 3 : Set a key-value pair in the preferences editor
             frag1SharedPreferencesEditor.putInt("frag1Color", frag1Color);
+
+            // Todo: Step 4 : Call apply() to save the changes made to the SharedPreferences
             frag1SharedPreferencesEditor.apply();
 
-
+            // Todo: Step 5  : check the console to see the saved data
+            Log.d("CHECK:", String.valueOf(frag1Color));
         });
 
 
@@ -61,8 +69,14 @@ public class Frag1 extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        // Todo: Step 1 : obtain the Default Shared Preference
         SharedPreferences frag1SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        // Todo: Step 2 : Retrieve the saved data from the SharedPreferences
         int frag1Color = frag1SharedPreferences.getInt("frag1Color", 0);
         linearlayoutFrag1.setBackgroundColor(frag1Color);
+
+        // Todo: Step 3  : check the console to see the saved data
+        Log.d("RESUME:", String.valueOf(frag1Color));
     }
 }

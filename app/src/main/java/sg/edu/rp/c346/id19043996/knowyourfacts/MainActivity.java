@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
+// TODO:Create three menu items Previous, Random and Next.
+// Implement onOptionsItemSelected() method similarly to exercise did in the worksheet.
 // TODO: Done by Shufang
 public class MainActivity extends AppCompatActivity {
 
@@ -72,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
         switch (itemId) {
 
+            //TODO: Set to previous  fragment if not  already the  first fragment
+            case previousId:
+                if (viewPager.getCurrentItem() > 0) {
+                    int previousPage = viewPager.getCurrentItem() - 1;
+                    viewPager.setCurrentItem(previousPage, true);
+                }
+                return true;
+            //TODO: Set to next  fragment if  not  already the  last  fragment
             case nextId:
                 int max = viewPager.getChildCount();
                 if (viewPager.getCurrentItem() < max - 1) {
@@ -79,14 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(nextPage, true);
                 }
                 return true;
-
-            case previousId:
-                if (viewPager.getCurrentItem() > 0) {
-                    int previousPage = viewPager.getCurrentItem() - 1;
-                    viewPager.setCurrentItem(previousPage, true);
-                }
-                return true;
-
+            //TODO:Set to a random  item
             case randomId:
                 Random random = new Random();
                 viewPager.setCurrentItem(random.nextInt(3), true);
@@ -101,20 +105,35 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         int fragsViewPager = viewPager.getCurrentItem();
+
+        // Todo: Step 1 : obtain the Default Shared Preference
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // Todo: Step 2 : Create a SharedPreferences prefEdit by calling edit()
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
+
+        // Todo: Step 3 : Set a key-value pair in the preferences editor
         sharedPreferencesEditor.putInt("fragsViewPager", fragsViewPager);
+
+        // Todo: Step 4 : Call apply() to save the changes made to the SharedPreferences
         sharedPreferencesEditor.apply();
-        Log.d("SAVE", String.valueOf(fragsViewPager));
+
+        // Todo: Step 5  : Update UI element with the saved data
+        Toast.makeText(getApplicationContext(), fragsViewPager, Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Todo: Step 1 : obtain the Default Shared Preference
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        // Todo: Step 2 : Retrieve the saved data from the SharedPreferences
         int fragsViewPager = sharedPreferences.getInt("fragsViewPager", 0);
         viewPager.setCurrentItem(fragsViewPager, true);
 
-        Log.d("RESTORE", String.valueOf(fragsViewPager));
+        // Todo: Step 3 : Update UI element with the saved data
+        Toast.makeText(getApplicationContext(), fragsViewPager, Toast.LENGTH_LONG).show();
     }
 }

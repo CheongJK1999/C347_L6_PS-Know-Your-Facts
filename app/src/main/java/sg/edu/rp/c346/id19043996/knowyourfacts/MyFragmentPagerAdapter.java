@@ -7,7 +7,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
- //todo by zuhaili
+// Todo: Create the FragmentPagerAdapter subclass and set the adapter in  the Activity,
+ //todo : done by zuhaili
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     ArrayList<Fragment> fragments;
 

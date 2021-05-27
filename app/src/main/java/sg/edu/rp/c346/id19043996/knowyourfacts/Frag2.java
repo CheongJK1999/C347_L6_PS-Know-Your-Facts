@@ -4,11 +4,11 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -30,37 +30,51 @@ public class Frag2 extends Fragment {
                              Bundle savedInstanceState) {
 
         // Todo: Inflate the layout for this fragment
-        View fragView1 = inflater.inflate(R.layout.fragment_frag2, container, false);
+        View fragView2 = inflater.inflate(R.layout.fragment_frag2, container, false);
 
         // TODO: Binding objects
-        tvFrag2 = fragView1.findViewById(R.id.tvFrag2);
-        btnFrag2 = fragView1.findViewById(R.id.btnFrag2);
-        linearlayoutFrag2 = fragView1.findViewById(R.id.linearlayoutFrag2);
+        tvFrag2 = fragView2.findViewById(R.id.tvFrag2);
+        btnFrag2 = fragView2.findViewById(R.id.btnFrag2);
+        linearlayoutFrag2 = fragView2.findViewById(R.id.linearlayoutFrag2);
 
         btnFrag2.setOnClickListener(v -> {
             Random random = new Random();
-            int Frag2Color = Color.argb(255, random.nextInt(256), random.nextInt(256),
+            int frag2Color = Color.argb(255, random.nextInt(256), random.nextInt(256),
                     random.nextInt(256));
-            fragView1.setBackgroundColor(Frag2Color);
+            fragView2.setBackgroundColor(frag2Color);
 
 
-            SharedPreferences Frag2SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            SharedPreferences.Editor Frag2SharedPreferencesEditor = Frag2SharedPreferences.edit();
-            Frag2SharedPreferencesEditor.putInt("Frag2Color", Frag2Color);
-            Frag2SharedPreferencesEditor.apply();
+            // Todo: Step 1 : obtain the Default Shared Preference
+            SharedPreferences frag2SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
+            // Todo: Step 2 : Create a SharedPreferences prefEdit by calling edit()
+            SharedPreferences.Editor frag2SharedPreferencesEditor = frag2SharedPreferences.edit();
 
+            // Todo: Step 3 : Set a key-value pair in the preferences editor
+            frag2SharedPreferencesEditor.putInt("frag2Color", frag2Color);
+
+            // Todo: Step 4 : Call apply() to save the changes made to the SharedPreferences
+            frag2SharedPreferencesEditor.apply();
+
+            // Todo: Step 5  : check the console to see the saved data
+            Log.d("CHECK:", String.valueOf(frag2Color));
         });
 
 
-        return fragView1;
+        return fragView2;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences Frag2SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        int Frag2Color = Frag2SharedPreferences.getInt("Frag2Color", 0);
-        linearlayoutFrag2.setBackgroundColor(Frag2Color);
+        // Todo: Step 1 : obtain the Default Shared Preference
+        SharedPreferences frag2SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
+        // Todo: Step 2 : Retrieve the saved data from the SharedPreferences
+        int frag2Color = frag2SharedPreferences.getInt("frag2Color", 0);
+        linearlayoutFrag2.setBackgroundColor(frag2Color);
+
+        // Todo: Step 3  : check the console to see the saved data
+        Log.d("RESUME:", String.valueOf(frag2Color));
     }
 }
