@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
+// TODO: Done by Shufang
 public class MainActivity extends AppCompatActivity {
 
     // TODO: Declaring objects
