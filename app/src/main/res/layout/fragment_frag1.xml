@@ -9,27 +9,16 @@
     <!-- Todo by Jun Kai -->
 
     <LinearLayout
+        android:id="@+id/linearlayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ostriches can run faster than horses" />
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="300dp"
+            android:layout_height="300dp" />
 
-        <TextView
-            android:id="@+id/tv2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Blue Background color" />
-
-        <TextView
-            android:id="@+id/tv3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mayonnaise sandwich with egg" />
 
         <Button
             android:id="@+id/btnColor"
