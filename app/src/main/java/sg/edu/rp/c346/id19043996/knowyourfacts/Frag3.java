@@ -64,7 +64,7 @@ public class Frag3 extends Fragment implements RssReader.RssCallback {
         String title2 = item.getChannel().getItems().get(1).getTitle();
         String content2 = item.getChannel().getItems().get(1).getDescription();
         tvRss1.setText(title2);
-        wv1.loadData(content2, "text/htm; charset=ut8", "utf-8");
+        wv2.loadData(content2, "text/htm; charset=ut8", "utf-8");
 
     }
 
