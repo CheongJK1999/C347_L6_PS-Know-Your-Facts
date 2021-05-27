@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -23,55 +26,33 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     // TODO: Declaring objects
+    Button btnReadLater;
+    ViewPager viewPager;
     ArrayList<Fragment> al;
     MyFragmentPagerAdapter adapter;
-    ViewPager viewPager;
-    Button btnReadLater;
-    AlarmManager alarmManager;
-    int reqCode = 12345;
-    int notificationID = 888;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TODO: Initalizing objects
-        viewPager = findViewById(R.id.viewpager1);
-        btnReadLater = findViewById(R.id.btnBack);
+        // TODO: Binding objects
+        viewPager = findViewById(R.id.viewpager);
+        btnReadLater = findViewById(R.id.btnRead);
 
-        FragmentManager fm = getSupportFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
 
         al = new ArrayList<>();
         al.add(new Frag1());
         al.add(new Frag2());
 
 
-        adapter = new MyFragmentPagerAdapter(fm, al);
+        adapter = new MyFragmentPagerAdapter(fragmentManager, al);
 
         viewPager.setAdapter(adapter);
 
 
-        btnReadLater.setOnClickListener(view -> {
-            finish();
-
-
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.SECOND, 300);
-
-            Intent intent = new Intent(MainActivity.this,
-                    ScheduledNotificationReceiver.class);
-
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                    MainActivity.this, reqCode,
-                    intent, PendingIntent.FLAG_CANCEL_CURRENT);
-
-            AlarmManager alarmManager = (AlarmManager)
-                    getSystemService(Activity.ALARM_SERVICE);
-
-            alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),
-                    pendingIntent);
-        });
+        btnReadLater.setOnClickListener(view -> finish());
     }
 
     @Override
@@ -115,5 +96,26 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        int fragsViewPager = viewPager.getCurrentItem();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
+        sharedPreferencesEditor.putInt("fragsViewPager", fragsViewPager);
+        sharedPreferencesEditor.apply();
+        Log.d("SAVE", String.valueOf(fragsViewPager));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int fragsViewPager = sharedPreferences.getInt("fragsViewPager", 0);
+        viewPager.setCurrentItem(fragsViewPager, true);
+
+        Log.d("RESTORE", String.valueOf(fragsViewPager));
     }
 }

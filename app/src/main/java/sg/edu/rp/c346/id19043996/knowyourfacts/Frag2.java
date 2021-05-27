@@ -1,48 +1,66 @@
 package sg.edu.rp.c346.id19043996.knowyourfacts;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.Random;
 
-// Todo by Jun Kai
+// Todo by Jun Kai , updated by Shufang
 public class Frag2 extends Fragment {
 
-    TextView tv1, tv2, tv3;
-    Button btnColor1;
+    // TODO: Declaring objects
+    TextView tvFrag2;
+    Button btnFrag2;
+    LinearLayout linearlayoutFrag2;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_frag2, container, false);
 
-        tv1 = view.findViewById(R.id.textView1);
-        tv2 = view.findViewById(R.id.textView2);
-        tv3 = view.findViewById(R.id.textView3);
-        btnColor1 = view.findViewById(R.id.btnColor1);
+        // Todo: Inflate the layout for this fragment
+        View fragView1 = inflater.inflate(R.layout.fragment_frag2, container, false);
 
-        btnColor1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        // TODO: Binding objects
+        tvFrag2 = fragView1.findViewById(R.id.tvFrag2);
+        btnFrag2 = fragView1.findViewById(R.id.btnFrag2);
+        linearlayoutFrag2 = fragView1.findViewById(R.id.linearlayoutFrag2);
 
-                Random random = new Random();
-                int color = Color.argb(255, random.nextInt(256), random.nextInt(256),
-                        random.nextInt(256));
-                view.setBackgroundColor(color);
-            }
+        btnFrag2.setOnClickListener(v -> {
+            Random random = new Random();
+            int Frag2Color = Color.argb(255, random.nextInt(256), random.nextInt(256),
+                    random.nextInt(256));
+            fragView1.setBackgroundColor(Frag2Color);
+
+
+            SharedPreferences Frag2SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            SharedPreferences.Editor Frag2SharedPreferencesEditor = Frag2SharedPreferences.edit();
+            Frag2SharedPreferencesEditor.putInt("Frag2Color", Frag2Color);
+            Frag2SharedPreferencesEditor.apply();
+
+
         });
-        return view;
 
+
+        return fragView1;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences Frag2SharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        int Frag2Color = Frag2SharedPreferences.getInt("Frag2Color", 0);
+        linearlayoutFrag2.setBackgroundColor(Frag2Color);
+    }
 }

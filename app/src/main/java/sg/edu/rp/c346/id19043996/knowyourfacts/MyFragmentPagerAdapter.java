@@ -1,6 +1,7 @@
 package sg.edu.rp.c346.id19043996.knowyourfacts;
 
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -15,6 +16,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         fragments = al;
     }
 
+    @NonNull
     @Override
     public Fragment getItem(int position) {
         return fragments.get(position);
