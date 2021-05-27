@@ -6,6 +6,7 @@
     tools:context=".Frag1">
 
     <!-- TODO: Update blank fragment layout -->
+    <!-- Todo by Jun Kai -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,19 +17,19 @@
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Ostriches can run faster than horses" />
 
         <TextView
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Blue Background color" />
 
         <TextView
             android:id="@+id/tv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Mayonnaise sandwich with egg" />
 
         <Button
             android:id="@+id/btnColor"
