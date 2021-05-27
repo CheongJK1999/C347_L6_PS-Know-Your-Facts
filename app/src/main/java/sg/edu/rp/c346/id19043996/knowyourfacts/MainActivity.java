@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 if (viewPager.getCurrentItem() < max - 1) {
                     int nextPage = viewPager.getCurrentItem() + 1;
                     viewPager.setCurrentItem(nextPage, true);
-
                 }
                 return true;
 

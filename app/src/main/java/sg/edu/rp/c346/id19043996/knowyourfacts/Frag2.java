@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -26,10 +25,10 @@ public class Frag2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_frag2, container, false);
 
-        tv1 = view.findViewById(R.id.textView1);
-        tv2 = view.findViewById(R.id.textView2);
+        tv1 = view.findViewById(R.id.tvRss1);
+        tv2 = view.findViewById(R.id.tvRss2);
         tv3 = view.findViewById(R.id.textView3);
-        btnColor1 = view.findViewById(R.id.btnColor1);
+        btnColor1 = view.findViewById(R.id.btnLoadRSS);
 
         btnColor1.setOnClickListener(new View.OnClickListener() {
             @Override
