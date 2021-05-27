@@ -16,6 +16,7 @@ import com.crazyhitty.chdev.ks.rssmanager.RssReader;
 
 import java.util.List;
 
+// TODO: RSS Feed | by Myron
 public class Frag3 extends Fragment implements RssReader.RssCallback {
 
     TextView tvRss1, tvRss2;

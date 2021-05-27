@@ -3,35 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
     tools:context=".Frag1">
 
     <!-- TODO: Update blank fragment layout -->
-    <!-- Todo: Done by Jun Kai , updated by Shufang -->
+    <!-- Todo by Jun Kai -->
 
     <LinearLayout
-        android:id="@+id/linearlayoutFrag1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvFrag1"
+            android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fragment 1" />
+            android:text="Ostriches can run faster than horses" />
 
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blue Background color" />
 
-        <ImageView
-            android:id="@+id/ivFrag1"
-            android:layout_width="300dp"
-            android:layout_height="300dp" />
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mayonnaise sandwich with egg" />
 
         <Button
-            android:id="@+id/btnFrag1"
+            android:id="@+id/btnColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Change Color" />
+
     </LinearLayout>
 
 </FrameLayout>

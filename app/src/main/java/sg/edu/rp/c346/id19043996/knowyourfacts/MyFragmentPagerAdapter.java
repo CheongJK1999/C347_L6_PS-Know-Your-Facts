@@ -1,14 +1,12 @@
 package sg.edu.rp.c346.id19043996.knowyourfacts;
 
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
-// Todo: Create the FragmentPagerAdapter subclass and set the adapter in  the Activity,
- //todo : done by zuhaili
+//todo by zuhaili
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     ArrayList<Fragment> fragments;
 
@@ -17,7 +15,6 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         fragments = al;
     }
 
-    @NonNull
     @Override
     public Fragment getItem(int position) {
         return fragments.get(position);
@@ -28,4 +25,3 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         return fragments.size();
     }
 }
-
