@@ -28,7 +28,7 @@ public class Frag3 extends Fragment implements RssReader.RssCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_frag3, container, false);
 
-        rssReader = new RssReader((RssReader.RssCallback) this);
+        rssReader = new RssReader(this);
 
         tvRss1 = v.findViewById(R.id.tvRss1);
         tvRss2 = v.findViewById(R.id.tvRss2);
